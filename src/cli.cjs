@@ -4,6 +4,7 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 
+const doctor = require('./doctor.cjs');
 const eos = require('./eos.cjs');
 const manifest = require('./manifest.cjs');
 const projection = require('./projection.cjs');
@@ -14,6 +15,7 @@ Usage:
   gsd-rovo install [--root <dir>] [--force]
   gsd-rovo uninstall [--root <dir>] [--force]
   gsd-rovo descriptor
+  gsd-rovo doctor [--root <dir>]
 
 Options:
   --root <dir>   Rovo CLI config dir (default: ~/.rovo).
@@ -214,6 +216,8 @@ async function main(argv, { out = createOutput(), home = os.homedir() } = {}) {
       return cmdUninstall({ root, force: args.force, out });
     case 'descriptor':
       return cmdDescriptor({ ctx: eos.initialize(), out });
+    case 'doctor':
+      return doctor.cmdDoctor({ root, out });
     default:
       out.fail(`unknown command ${args.command}`);
       out.raw(USAGE + '\n');
