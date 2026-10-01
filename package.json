@@ -4,6 +4,9 @@
   "private": true,
   "description": "Embeds GSD in Atlassian Rovo CLI through the GSD Host-Integration Interface.",
   "license": "UNLICENSED",
+  "bin": {
+    "gsd-rovo": "bin/gsd-rovo.cjs"
+  },
   "scripts": {
     "lint": "node scripts/check.cjs",
     "test": "node --test \"test/**/*.test.cjs\""
